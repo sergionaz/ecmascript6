@@ -59,3 +59,85 @@ console.log(globalVar);
 // Const no se puede modificar luego
 cons a = 'b';
 // a = 'a'; // Esto no lo va a permitir
+
+// 7) Asignar objetos
+let name = 'Sergio';
+let age = 29;
+// Antes 
+obj = {name: "Sergio", age: 29};
+// Con EM6
+obj2 = {name, age};
+// console.log(obj2);
+
+// 8) Funciones arrow
+const names = [
+    {name: 'Sergio', age: 29},
+    {name: 'Lucas', age: 32}
+];
+// Antes
+let listOfNames = names.map(function (item){
+    console.log(item.name);
+})
+// Con EM6
+let listOfNames2 = names.map(item => console.log(item.name));
+//  otra forma alternativa
+const listOfNames3 = (name, age, country) => {
+    console.log(name);
+};
+// otro
+const listOfNames4 = name => {
+    console.log(name);
+};
+// ultima (sin return, ni bloques de código)
+const square = num => num * num;
+
+// 9) Asincronismo (por medio de promesas)
+const helloPromise = () => {
+    return new Promise((resolve, reject) => {
+        if (false) {
+            resolve('Hey!')
+        } else {
+            reject('Ups!')
+        }
+    });
+};
+
+helloPromise()
+    .then(response => console.log(response))
+    .catch(error => console.log(error));
+
+// 10) Clases
+class calculator {
+    constructor() {
+        this.valueA = 0;
+        this.valueB = 0;
+    }
+    sum(valueA, valueB) {
+        this.valueA = valueA;
+        this.valueB = valueB;
+        return this.valueA + this.valueB;
+    }
+}
+
+const calc = new calculator();
+console.log(calc.sum(2, 2));
+
+// 11) Module
+import { hello } from './module'
+
+hello();
+
+// 12) Generators
+function* helloWorld() {
+    if (true) {
+        yield 'Hello, ';
+    }
+    if (true) {
+        yield 'World';
+    }
+};
+
+const generatorHello = helloWorld();
+console.log(generatorHello.next().value);
+console.log(generatorHello.next().value);
+console.log(generatorHello.next().value);
